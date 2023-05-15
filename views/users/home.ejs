@@ -1,0 +1,15 @@
+<% include('../layoouts/header.ejs') %>
+
+<h1> Welcome , <%= user.name %> </h1>
+<table>
+    <tr>
+        <td><img src="userImages/<%= user.image %>" width="100px" height="100px" alt="<%= user.image %>"></td>
+    </tr>
+    <tr>
+            <td>email</td>
+            <td><%= user.email %></td>
+    </tr>
+</table>
+
+<a href="/logout">LOGOUT</a>
+<% include('../layoouts/footer.ejs') %>
