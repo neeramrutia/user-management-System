@@ -84,5 +84,11 @@ userRoute.post('/forget-password',userController.resetPassword);
 userRoute.get('/verification',userController.verificationLoad);
 userRoute.post('/verification',userController.sendVerificationLink);
 // ============================
+
+//editing the profile
+userRoute.get('/edit',auth.isLogin,userController.editLoad);
+userRoute.post('/edit',upload.single('image'),userController.updateProfile);
+//=============================
+
 module.exports = userRoute;
 // ============================

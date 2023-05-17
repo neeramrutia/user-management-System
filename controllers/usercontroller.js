@@ -311,6 +311,38 @@ const sendVerificationLink = async(req,res)=>{
     }
 }
 
+//editing user profile functions:
+
+const editLoad = async(req,res)=>{
+    try {
+       const id = req.query.id;
+       const userData = await usermodel.findById({ _id:id });
+       if(userData){
+        res.render('edit',{user:userData})
+       }
+       else{
+        res.redirect('/home');
+       }
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const updateProfile = async(req,res)=>{
+    try {
+        if(req.file){
+            const updatedData = await usermodel.findByIdAndUpdate({ _id:req.body.user_id } , {$set:{name:req.body.name , email:req.body.email , image:req.file.filename}})
+        }
+        else{
+            const updatedData = await usermodel.findByIdAndUpdate({ _id:req.body.user_id } , {$set:{name:req.body.name , email:req.body.email }})
+        }
+        res.redirect('/home');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 // exporting functions as an Object
 module.exports = {
     loadRegister,
@@ -326,6 +358,8 @@ module.exports = {
     forgetPasswordLoad,
     resetPassword,
     verificationLoad,
-    sendVerificationLink
+    sendVerificationLink,
+    editLoad,
+    updateProfile
 }
 // ================================

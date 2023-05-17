@@ -1,6 +1,6 @@
 // connecting to atlas
 const mongoose = require('mongoose');
-mongoose.connect("your mongodb database link");
+mongoose.connect("");
 // =============================
 
 // requiring express
